@@ -205,7 +205,23 @@ const PRODUCTS = [
   "bg": "#ece2d3",
   "color": "#f6efe3",
   "image": "images/la-roche-posay-effaclar-gel-cleanser.jpg",
-  "details": "Medicated · 2% salicylic acid · 200 ml"
+  "details": "2% salicylic acid, for acne-prone skin · 200 ml",
+  "variants": [
+   {
+    "id": "la-roche-posay-effaclar-gel-cleanser-medicated",
+    "size": "Medicated",
+    "price": 40000,
+    "image": "images/la-roche-posay-effaclar-gel-cleanser.jpg",
+    "details": "2% salicylic acid, for acne-prone skin · 200 ml"
+   },
+   {
+    "id": "la-roche-posay-effaclar-gel-cleanser-purifying-foaming",
+    "size": "Purifying Foaming",
+    "price": 45000,
+    "image": "images/la-roche-posay-effaclar-purifying-foaming-gel.jpg",
+    "details": "For oily, sensitive skin · 400 ml"
+   }
+  ]
  },
  {
   "id": "panoxyl-acne-foaming-wash",
