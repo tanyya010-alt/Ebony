@@ -103,21 +103,28 @@ const PRODUCTS = [
   "bg": "#ece2d3",
   "color": "#f6efe3",
   "image": "images/garnier-micellar-cleansing-water.jpg",
-  "details": "SkinActive · for sensitive skin",
+  "details": "For sensitive skin",
   "variants": [
    {
     "id": "garnier-micellar-cleansing-water-all-in-1",
     "size": "All-in-1",
     "price": 13500,
     "image": "images/garnier-micellar-cleansing-water.jpg",
-    "details": "SkinActive · for sensitive skin"
+    "details": "For sensitive skin"
    },
    {
-    "id": "garnier-micellar-cleansing-water-vitamin-c-400-ml",
-    "size": "Vitamin C · 400 ml",
+    "id": "garnier-micellar-cleansing-water-vitamin-c",
+    "size": "Vitamin C",
     "price": 19000,
     "image": "images/garnier-micellar-cleansing-water-vitamin-c.jpg",
-    "details": "SkinActive · brightens dull, uneven skin"
+    "details": "Brightens dull, uneven skin · 400 ml"
+   },
+   {
+    "id": "garnier-micellar-cleansing-water-mattifying",
+    "size": "Mattifying",
+    "price": 17000,
+    "image": "images/garnier-micellar-cleansing-water-mattifying.jpg",
+    "details": "Purifies pores, all skin types · 400 ml"
    }
   ]
  },
