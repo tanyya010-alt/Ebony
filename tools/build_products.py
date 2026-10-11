@@ -3,6 +3,9 @@
 
 Usage:  python3 tools/build_products.py
 
+Sizes: give each size its own row with the same Product name and a "Size"
+column (e.g. "355 ml"); the shop shows them as one product with size buttons.
+
 Details: an optional "Details" column (skin type, size…) shows under the name.
 
 Photos: add an "Image" column with a direct image link or a file path such as
@@ -63,9 +66,30 @@ def naira(text):
     return int(re.sub(r"[^\d]", "", text))
 
 
+def merge_sizes(rows):
+    """Rows with the same product name become one product with a size choice."""
+    merged = {}
+    for r in rows:
+        merged.setdefault(r["id"], []).append(r)
+    products = []
+    for group in merged.values():
+        first = dict(group[0])
+        if len(group) > 1:
+            first["variants"] = [
+                {"id": slug(f'{r["name"]} {r.get("size") or i + 1}'), "size": r.get("size") or f"Option {i + 1}",
+                 "price": r["price"],
+                 **{k: r[k] for k in ("image", "details") if k in r}}
+                for i, r in enumerate(group)
+            ]
+            first["price"] = min(r["price"] for r in group)
+            first.pop("size", None)
+        products.append(first)
+    return products
+
+
 def main():
     rows = list(csv.DictReader(SRC.open(encoding="utf-8")))
-    products, counters = [], {}
+    products, counters, colours = [], {}, {}
     for row in rows:
         name = (row.get("Product") or "").strip()
         if not name:
@@ -86,8 +110,10 @@ def main():
         if section == "perfume" and cat == "Perfume" and not luxe and tier == "Basic":
             shape = "round"
         key = "luxury" if luxe else section
-        i = counters[key] = counters.get(key, -1) + 1
-        bg, color = PALETTES[key][i % len(PALETTES[key])]
+        if name not in colours:  # extra sizes of a product share its colours
+            i = counters[key] = counters.get(key, -1) + 1
+            colours[name] = PALETTES[key][i % len(PALETTES[key])]
+        bg, color = colours[name]
 
         products.append({
             "id": slug(name), "name": name, "brand": brand or name.split()[0],
@@ -96,7 +122,10 @@ def main():
             "shape": shape, "bg": bg, "color": color,
             **({"image": image} if image else {}),
             **({"details": row["Details"].strip()} if (row.get("Details") or "").strip() else {}),
+            **({"size": row["Size"].strip()} if (row.get("Size") or "").strip() else {}),
         })
+
+    products = merge_sizes(products)
 
     OUT.write_text(
         "/* Generated from data/catalog.csv by tools/build_products.py — edit the CSV, then re-run. */\n"

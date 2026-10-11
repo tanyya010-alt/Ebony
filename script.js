@@ -20,7 +20,9 @@ const TREATMENTS = [
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const money = n => new Intl.NumberFormat(LOCALE, { style: "currency", currency: CURRENCY, maximumFractionDigits: 0 }).format(n);
-const byId = id => PRODUCTS.find(p => p.id === id);
+// Everything that can go in the bag: each size of a product is its own item.
+const ITEMS = PRODUCTS.flatMap(p => p.variants ? p.variants.map(v => ({ ...p, ...v, variants: undefined })) : [p]);
+const byId = id => ITEMS.find(p => p.id === id);
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 /* ---------- Product illustrations (inline SVG, no image files needed) ---------- */
@@ -120,12 +122,16 @@ function isDark(hex) {
 const CAT_LABEL = { skincare: "Skincare", perfume: "Perfumes", body: "Body Care" };
 const TIER_TAG = { "Luxury": "Luxury", "Ultra-luxury": "Niche Luxury" };
 const shop = { cat: "all", type: "all", q: "", sort: "featured", shown: PAGE_SIZE };
+const chosenSize = {}; // product id -> index of the size shown on its card
+
+// The product as currently shown: with its chosen size's price, photo and details.
+const current = p => p.variants ? { ...p, ...p.variants[chosenSize[p.id] || 0], variants: p.variants } : p;
 
 function matches(p) {
   if (shop.cat !== "all" && p.category !== shop.cat) return false;
   if (shop.type !== "all" && p.type !== shop.type) return false;
   if (!shop.q) return true;
-  const hay = `${p.name} ${p.brand} ${p.type} ${p.tier}`.toLowerCase();
+  const hay = `${p.name} ${p.brand} ${p.type} ${p.tier} ${(p.variants || []).map(v => v.size).join(" ")}`.toLowerCase();
   return shop.q.toLowerCase().split(/\s+/).every(w => hay.includes(w));
 }
 
@@ -146,21 +152,40 @@ function renderSubFilters() {
     <button class="chip${shop.type === t ? " active" : ""}" data-type="${escapeHtml(t)}">${t === "all" ? "All " + CAT_LABEL[shop.cat] : escapeHtml(t)}</button>`).join("");
 }
 
-function renderProducts() {
-  const all = sorted(PRODUCTS.filter(matches));
-  const list = all.slice(0, shop.shown);
-  $("#product-grid").innerHTML = list.length ? list.map((p, i) => `
-    <article class="product" style="animation-delay:${(i % PAGE_SIZE) * 50}ms">
+function productCard(p, i = 0) {
+  const v = current(p);
+  return `
+    <article class="product" data-product="${p.id}" style="animation-delay:${(i % PAGE_SIZE) * 50}ms">
       <div class="product-media" style="background:${p.bg}">
         ${TIER_TAG[p.tier] ? `<span class="product-tag">${TIER_TAG[p.tier]}</span>` : ""}
-        ${productVisual(p)}
-        <button class="quick-add" data-add="${p.id}">Add to Bag</button>
+        ${productVisual(v)}
+        <button class="quick-add" data-add="${v.id}">Add to Bag</button>
       </div>
       <span class="product-cat">${escapeHtml(p.brand)} · ${escapeHtml(p.type)}</span>
       <h3>${escapeHtml(p.name)}</h3>
-      ${p.details ? `<p class="product-desc">${escapeHtml(p.details)}</p>` : ""}
-      <p class="product-price">${money(p.price)}</p>
-    </article>`).join("") : `<p class="no-results">No products match “${escapeHtml(shop.q)}”. Try another brand or product name.</p>`;
+      ${v.details ? `<p class="product-desc">${escapeHtml(v.details)}</p>` : ""}
+      ${p.variants ? `<div class="sizes" role="group" aria-label="Size">${p.variants.map((x, j) => `
+        <button class="size${x.id === v.id ? " active" : ""}" data-size="${j}" aria-pressed="${x.id === v.id}">${escapeHtml(x.size)}</button>`).join("")}
+      </div>` : ""}
+      <p class="product-price">${money(v.price)}</p>
+    </article>`;
+}
+
+function chooseSize(card, index) {
+  const p = PRODUCTS.find(x => x.id === card.dataset.product);
+  chosenSize[p.id] = index;
+  const fresh = document.createElement("div");
+  fresh.innerHTML = productCard(p);
+  const next = fresh.firstElementChild;
+  next.style.animation = "none";
+  card.replaceWith(next);
+  next.querySelector(`[data-size="${index}"]`).focus();
+}
+
+function renderProducts() {
+  const all = sorted(PRODUCTS.filter(matches));
+  const list = all.slice(0, shop.shown);
+  $("#product-grid").innerHTML = list.length ? list.map((p, i) => productCard(p, i)).join("") : `<p class="no-results">No products match “${escapeHtml(shop.q)}”. Try another brand or product name.</p>`;
   $("#result-count").textContent = `${all.length} product${all.length === 1 ? "" : "s"}`;
   const more = $("#show-more");
   more.hidden = all.length <= shop.shown;
@@ -225,7 +250,7 @@ function renderCart() {
         <div class="cart-thumb" style="background:${p.bg}">${productVisual(p)}</div>
         <div>
           <h4>${escapeHtml(p.name)}</h4>
-          <span class="muted">${escapeHtml(p.type)}</span><br>
+          <span class="muted">${escapeHtml(p.size || p.type)}</span><br>
           <div class="qty">
             <button data-qty="${id}" data-d="-1" aria-label="Decrease quantity">−</button>
             <span>${q}</span>
@@ -348,6 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (t.dataset.filter) setFilter(t.dataset.filter);
     if (t.dataset.type) { shop.type = t.dataset.type; shop.shown = PAGE_SIZE; renderSubFilters(); renderProducts(); }
+    if (t.dataset.size) chooseSize(t.closest(".product"), Number(t.dataset.size));
     if (t.id === "show-more") { shop.shown += PAGE_SIZE; renderProducts(); }
     if (t.matches(".cart-btn")) openCart();
     if (t.matches(".cart-close")) closeCart();

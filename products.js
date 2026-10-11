@@ -33,7 +33,23 @@ const PRODUCTS = [
   "bg": "#e6d6be",
   "color": "#d8b98c",
   "image": "images/cerave-foaming-facial-cleanser.jpg",
-  "details": "For normal to oily skin · 12 fl oz (355 ml)"
+  "details": "For normal to oily skin",
+  "variants": [
+   {
+    "id": "cerave-foaming-facial-cleanser-12-fl-oz-355-ml",
+    "size": "12 fl oz (355 ml)",
+    "price": 20000,
+    "image": "images/cerave-foaming-facial-cleanser.jpg",
+    "details": "For normal to oily skin"
+   },
+   {
+    "id": "cerave-foaming-facial-cleanser-16-fl-oz-473-ml",
+    "size": "16 fl oz (473 ml)",
+    "price": 49000,
+    "image": "images/cerave-foaming-facial-cleanser-473ml.jpg",
+    "details": "For normal to oily skin"
+   }
+  ]
  },
  {
   "id": "cetaphil-gentle-skin-cleanser",

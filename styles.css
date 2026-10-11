@@ -446,6 +446,13 @@ p { margin: 0 0 1em; }
 .product-cat { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-dark); }
 .product h3 { font-size: 1.3rem; margin: .25rem 0 .5rem; }
 .product-desc { font-size: .88rem; color: var(--muted); margin-bottom: .5rem; }
+.sizes { display: flex; flex-wrap: wrap; gap: .4rem; margin: .1rem 0 .8rem; }
+.size {
+  font-size: .72rem; letter-spacing: .04em; padding: .4rem .75rem;
+  border: 1px solid var(--line); color: var(--muted); transition: all .3s var(--ease);
+}
+.size:hover { border-color: var(--gold); color: var(--ebony); }
+.size.active { border-color: var(--ebony); color: var(--ebony); background: var(--cream); }
 .product-price { font-size: 1rem; font-weight: 400; letter-spacing: .06em; margin-top: auto; }
 .product-price small { color: var(--muted); font-size: .8rem; margin-left: .3rem; }
 
