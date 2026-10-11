@@ -349,14 +349,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Moisturisers",
   "tier": "Mid-range",
-  "price": 26500,
+  "price": 21000,
   "priceRange": [
    18000,
    35000
   ],
   "shape": "jar",
   "bg": "#e6d6be",
-  "color": "#d8b98c"
+  "color": "#d8b98c",
+  "image": "images/neutrogena-hydro-boost-water-gel.jpg",
+  "details": "Normal to combination skin · 50 ml"
  },
  {
   "id": "nivea-soft-moisturising-cream",
