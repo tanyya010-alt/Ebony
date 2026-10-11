@@ -2,6 +2,8 @@
 
 An elegant storefront for **Ebony's Skin Therapy & Spa**: skincare, perfumes, and skin therapy & spa treatments.
 
+![Homepage preview](preview.png)
+
 ## What's included
 
 - **Home / hero** with the brand's ebony, cream and champagne-gold look
