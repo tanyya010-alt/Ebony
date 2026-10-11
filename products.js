@@ -76,14 +76,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Basic",
-  "price": 8500,
+  "price": 6000,
   "priceRange": [
    5000,
    12000
   ],
   "shape": "pump",
   "bg": "#eadfd2",
-  "color": "#e8c9b5"
+  "color": "#e8c9b5",
+  "image": "images/simple-refreshing-facial-wash.jpg",
+  "details": "Kind to Skin · 150 ml"
  },
  {
   "id": "garnier-micellar-cleansing-water",
