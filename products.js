@@ -196,14 +196,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Premium",
-  "price": 35000,
+  "price": 40000,
   "priceRange": [
    25000,
    45000
   ],
   "shape": "pump",
   "bg": "#ece2d3",
-  "color": "#f6efe3"
+  "color": "#f6efe3",
+  "image": "images/la-roche-posay-effaclar-gel-cleanser.jpg",
+  "details": "Medicated · 2% salicylic acid · 200 ml"
  },
  {
   "id": "panoxyl-acne-foaming-wash",
