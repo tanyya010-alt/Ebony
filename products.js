@@ -394,7 +394,23 @@ const PRODUCTS = [
   "bg": "#eadfd2",
   "color": "#e8c9b5",
   "image": "images/aveeno-daily-moisturising-lotion.jpg",
-  "details": "Body lotion for dry skin · 227 g"
+  "details": "Body lotion for dry skin",
+  "variants": [
+   {
+    "id": "aveeno-daily-moisturising-lotion-227-g",
+    "size": "227 g",
+    "price": 15000,
+    "image": "images/aveeno-daily-moisturising-lotion.jpg",
+    "details": "Body lotion for dry skin"
+   },
+   {
+    "id": "aveeno-daily-moisturising-lotion-532-ml",
+    "size": "532 ml",
+    "price": 25225,
+    "image": "images/aveeno-daily-moisturising-lotion.jpg",
+    "details": "Body lotion for dry skin · 18 fl oz"
+   }
+  ]
  },
  {
   "id": "cosrx-advanced-snail-92-all-in-one-cream",
