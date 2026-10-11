@@ -256,14 +256,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Moisturisers",
   "tier": "Basic",
-  "price": 31000,
+  "price": 19000,
   "priceRange": [
    22000,
    40000
   ],
   "shape": "jar",
   "bg": "#e3dbd0",
-  "color": "#c9d3d6"
+  "color": "#c9d3d6",
+  "image": "images/cerave-moisturising-cream.jpg",
+  "details": "For dry to very dry skin · 454 g"
  },
  {
   "id": "cerave-moisturising-lotion",
