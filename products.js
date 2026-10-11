@@ -407,7 +407,7 @@ const PRODUCTS = [
     "id": "aveeno-daily-moisturising-lotion-532-ml",
     "size": "532 ml",
     "price": 25225,
-    "image": "images/aveeno-daily-moisturising-lotion.jpg",
+    "image": "images/aveeno-daily-moisturising-lotion-532ml.jpg",
     "details": "Body lotion for dry skin · 18 fl oz"
    }
   ]
