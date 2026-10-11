@@ -142,14 +142,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Basic",
-  "price": 13000,
+  "price": 16000,
   "priceRange": [
    8000,
    18000
   ],
   "shape": "pump",
   "bg": "#e6d6be",
-  "color": "#d8b98c"
+  "color": "#d8b98c",
+  "image": "images/neutrogena-deep-clean-facial-cleanser.jpg",
+  "details": "For normal to oily skin · 200 ml"
  },
  {
   "id": "cosrx-low-ph-good-morning-gel-cleanser",

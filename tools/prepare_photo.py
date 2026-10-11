@@ -25,6 +25,8 @@ def prepare(src, dest):
 
     # Anything clearly darker than near-white counts as the product.
     diff = ImageChops.difference(im, Image.new("RGB", im.size, "white")).convert("L")
+    # Off-white backgrounds (cream, light grey) become pure white so they blend into the card.
+    im.paste("white", mask=diff.point(lambda v: 255 if v <= 14 else 0))
     box = diff.point(lambda v: 255 if v > 18 else 0).getbbox()
     if box:
         im = im.crop(box)
