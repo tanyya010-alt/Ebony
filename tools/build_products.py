@@ -3,6 +3,9 @@
 
 Usage:  python3 tools/build_products.py
 
+Photos: add an "Image" column with a direct image link or a file path such as
+images/cerave-cleanser.jpg. Products without one show a drawn bottle.
+
 Price: the shop price is the middle of the "Typical Nigeria price range",
 rounded to the nearest ₦500. To set your own price, add a "Price" column
 to the CSV (plain number, e.g. 25000) and it will be used instead.
@@ -70,6 +73,11 @@ def main():
         tier = row["Tier"].strip()
         low, high = [naira(p) for p in re.split(r"[–-]", row["Typical Nigeria price range"])]
         price = int(row["Price"]) if row.get("Price", "").strip() else round((low + high) / 2 / 500) * 500
+        # Product photo: a direct image link (https://…/photo.jpg) or a file in images/ (e.g. images/cerave.jpg).
+        # Google search pages are not photos, so they are ignored and the drawn bottle is shown instead.
+        image = (row.get("Image") or "").strip()
+        if "google." in image and "/search" in image:
+            image = ""
         brand = next((b for b in BRANDS if name.startswith(b)), "")
 
         luxe = tier in ("Luxury", "Ultra-luxury") and section == "perfume"
@@ -84,6 +92,7 @@ def main():
             "category": section, "type": sub, "tier": tier,
             "price": price, "priceRange": [low, high],
             "shape": shape, "bg": bg, "color": color,
+            **({"image": image} if image else {}),
         })
 
     OUT.write_text(

@@ -39,6 +39,15 @@ python3 tools/build_products.py
 - To set your own exact price, add a **`Price`** column to the CSV (e.g. `25000`); it overrides the range.
 - Categories map to the shop like this: Cleanser / Moisturiser / Sunscreen / Serum / Exfoliant → **Skincare**; Perfume / Body mist / Perfume oil → **Perfumes**; Body care → **Body Care**.
 
+### Product photos
+
+Add an **`Image`** column to `data/catalog.csv` and fill it in for each product with either:
+
+- a **direct link to the photo** (it ends in `.jpg`, `.png` or `.webp`; on a web page, right-click the photo → *Copy image address*), or
+- a **photo file** you put in the `images/` folder, e.g. `images/cerave-hydrating-cleanser.jpg`
+
+Then run `python3 tools/build_products.py`. Photos on a white background look best. Products without a photo keep the drawn bottle, and so does any photo that fails to load. Google search links are ignored because they open a page of results, not a single photo.
+
 ### Everything else
 
 - Spa treatments and their prices: `TREATMENTS` near the top of `script.js`

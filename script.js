@@ -99,6 +99,13 @@ function productSVG(p) {
   return `<svg viewBox="0 0 100 124" role="img" aria-label="${escapeHtml(p.name)}">${defs}${shapes[p.shape] || shapes.jar}</svg>`;
 }
 
+// Real photo when the catalog has one; the drawn bottle otherwise, or if the photo fails to load.
+function productVisual(p) {
+  if (!p.image) return productSVG(p);
+  return `<img class="product-photo" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy"
+    onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="svg-fallback" hidden>${productSVG(p)}</span>`;
+}
+
 function shade(hex, pct) {
   const n = parseInt(hex.slice(1), 16);
   const f = v => Math.max(0, Math.min(255, Math.round(v + (pct / 100) * (pct > 0 ? 255 - v : v))));
@@ -146,7 +153,7 @@ function renderProducts() {
     <article class="product" style="animation-delay:${(i % PAGE_SIZE) * 50}ms">
       <div class="product-media" style="background:${p.bg}">
         ${TIER_TAG[p.tier] ? `<span class="product-tag">${TIER_TAG[p.tier]}</span>` : ""}
-        ${productSVG(p)}
+        ${productVisual(p)}
         <button class="quick-add" data-add="${p.id}">Add to Bag</button>
       </div>
       <span class="product-cat">${escapeHtml(p.brand)} · ${escapeHtml(p.type)}</span>
@@ -214,7 +221,7 @@ function renderCart() {
     const p = byId(id);
     return `
       <div class="cart-item">
-        <div class="cart-thumb" style="background:${p.bg}">${productSVG(p)}</div>
+        <div class="cart-thumb" style="background:${p.bg}">${productVisual(p)}</div>
         <div>
           <h4>${escapeHtml(p.name)}</h4>
           <span class="muted">${escapeHtml(p.type)}</span><br>
