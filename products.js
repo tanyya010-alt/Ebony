@@ -167,7 +167,9 @@ const PRODUCTS = [
   ],
   "shape": "pump",
   "bg": "#e3dbd0",
-  "color": "#c9d3d6"
+  "color": "#c9d3d6",
+  "image": "images/cosrx-low-ph-good-morning-gel-cleanser.jpg",
+  "details": "Gentle low-pH gel · 150 ml"
  },
  {
   "id": "cosrx-salicylic-acid-daily-gentle-cleanser",

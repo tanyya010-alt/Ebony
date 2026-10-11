@@ -17,6 +17,7 @@
   --text: #2b231e;
   --muted: #7d6f63;
   --line: rgba(43, 35, 30, 0.12);
+  --photo-tile: #ffffff;
   --line-dark: rgba(247, 241, 232, 0.14);
 
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
@@ -414,9 +415,12 @@ p { margin: 0 0 1em; }
   margin-bottom: 1.2rem;
 }
 .product-media svg { width: 62%; height: auto; transition: transform .8s var(--ease); filter: drop-shadow(0 22px 22px rgba(20,16,13,.22)); }
-.product-photo { width: 78%; height: 78%; object-fit: contain; mix-blend-mode: multiply; transition: transform .8s var(--ease); }
+.product-photo { width: 78%; height: 78%; object-fit: contain; transition: transform .8s var(--ease); }
 .product:hover .product-photo { transform: translateY(-6px) scale(1.04); }
 .svg-fallback { display: contents; }
+/* Products with a real photo sit on a white tile, like the photo's own background. */
+.product-media.has-photo, .cart-thumb.has-photo { background: var(--photo-tile) !important; }
+.product-media.has-photo { box-shadow: inset 0 0 0 1px var(--line); }
 .cart-thumb .product-photo { width: 88%; height: 88%; }
 .product:hover .product-media svg { transform: translateY(-6px) scale(1.04); }
 .product-tag {

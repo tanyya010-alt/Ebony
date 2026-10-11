@@ -156,7 +156,7 @@ function productCard(p, i = 0) {
   const v = current(p);
   return `
     <article class="product" data-product="${p.id}" style="animation-delay:${(i % PAGE_SIZE) * 50}ms">
-      <div class="product-media" style="background:${p.bg}">
+      <div class="product-media${v.image ? " has-photo" : ""}" style="background:${p.bg}">
         ${TIER_TAG[p.tier] ? `<span class="product-tag">${TIER_TAG[p.tier]}</span>` : ""}
         ${productVisual(v)}
         <button class="quick-add" data-add="${v.id}">Add to Bag</button>
@@ -247,7 +247,7 @@ function renderCart() {
     const p = byId(id);
     return `
       <div class="cart-item">
-        <div class="cart-thumb" style="background:${p.bg}">${productVisual(p)}</div>
+        <div class="cart-thumb${p.image ? " has-photo" : ""}" style="background:${p.bg}">${productVisual(p)}</div>
         <div>
           <h4>${escapeHtml(p.name)}</h4>
           <span class="muted">${escapeHtml(p.size || p.type)}</span><br>

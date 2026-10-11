@@ -3,14 +3,17 @@
 
 Usage:  python3 tools/prepare_photo.py <photo> images/<product-id>.jpg
 
-Trims the white border around the product, centres it on a white square
-with a small margin, and saves a JPEG. Needs Pillow (pip install pillow).
+Makes an off-white background pure white (only background touching the
+photo's edges, so white products are left alone), trims the empty space,
+and centres the product on a white square with a small margin.
+Needs Pillow (pip install pillow).
 """
 import sys
-from PIL import Image, ImageChops
+from PIL import Image, ImageChops, ImageDraw
 
-MARGIN = 0.06  # space around the product, as a share of the square
-MAX_SIZE = 1000
+MARGIN = 0.06       # space around the product, as a share of the square
+MAX_SIZE = 900
+BACKGROUND = 24     # most a background may differ from pure white and still be cleared (0–255)
 
 
 def prepare(src, dest):
@@ -23,20 +26,30 @@ def prepare(src, dest):
     else:
         im = im.convert("RGB")
 
-    # Anything clearly darker than near-white counts as the product.
+    # Near-white pixels, then keep only those connected to the photo's edges.
     diff = ImageChops.difference(im, Image.new("RGB", im.size, "white")).convert("L")
-    # Off-white backgrounds (cream, light grey) become pure white so they blend into the card.
-    im.paste("white", mask=diff.point(lambda v: 255 if v <= 14 else 0))
-    box = diff.point(lambda v: 255 if v > 18 else 0).getbbox()
-    if box:
-        im = im.crop(box)
+    w, h = im.size
+    # Match the actual background: a pure-white photo gets a tight limit so pale parts
+    # of the product are kept; a cream or grey one gets just enough to clear it.
+    corners = [diff.getpixel(c) for c in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1))]
+    limit = min(BACKGROUND, sorted(corners)[1] + 6)
+    mask = diff.point(lambda v: 255 if v <= limit else 0)
+    edge = [(x, y) for x in range(0, w, 4) for y in (0, h - 1)] + [(x, y) for y in range(0, h, 4) for x in (0, w - 1)]
+    for point in edge:
+        if mask.getpixel(point) == 255:
+            ImageDraw.floodfill(mask, point, 128)
+    im.paste("white", mask=mask.point(lambda v: 255 if v == 128 else 0))
 
-    side = int(max(im.size) / (1 - 2 * MARGIN))
+    product_mask = ImageChops.difference(im, Image.new("RGB", im.size, "white")).convert("L")
+    box = product_mask.point(lambda v: 255 if v > 18 else 0).getbbox()
+    product = im.crop(box) if box else im
+
+    side = int(max(product.size) / (1 - 2 * MARGIN))
     square = Image.new("RGB", (side, side), "white")
-    square.paste(im, ((side - im.width) // 2, (side - im.height) // 2))
+    square.paste(product, ((side - product.width) // 2, (side - product.height) // 2))
     if side > MAX_SIZE:
         square = square.resize((MAX_SIZE, MAX_SIZE), Image.LANCZOS)
-    square.save(dest, quality=88, optimize=True)
+    square.save(dest, quality=90, optimize=True)
     print(f"Saved {dest} ({square.width}×{square.height})")
 
 
