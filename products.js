@@ -331,14 +331,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Moisturisers",
   "tier": "Basic",
-  "price": 26500,
+  "price": 30000,
   "priceRange": [
    18000,
    35000
   ],
   "shape": "jar",
   "bg": "#ece2d3",
-  "color": "#f6efe3"
+  "color": "#f6efe3",
+  "image": "images/cetaphil-moisturising-cream.jpg",
+  "details": "For very dry to dry, sensitive skin · 453 g"
  },
  {
   "id": "neutrogena-hydro-boost-water-gel",
