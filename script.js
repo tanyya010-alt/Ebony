@@ -164,7 +164,7 @@ function productCard(p, i = 0) {
       <span class="product-cat">${escapeHtml(p.brand)} · ${escapeHtml(p.type)}</span>
       <h3>${escapeHtml(p.name)}</h3>
       ${v.details ? `<p class="product-desc">${escapeHtml(v.details)}</p>` : ""}
-      ${p.variants ? `<div class="sizes" role="group" aria-label="Size">${p.variants.map((x, j) => `
+      ${p.variants ? `<div class="sizes" role="group" aria-label="Options">${p.variants.map((x, j) => `
         <button class="size${x.id === v.id ? " active" : ""}" data-size="${j}" aria-pressed="${x.id === v.id}">${escapeHtml(x.size)}</button>`).join("")}
       </div>` : ""}
       <p class="product-price">${money(v.price)}</p>
