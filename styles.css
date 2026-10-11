@@ -446,9 +446,9 @@ p { margin: 0 0 1em; }
 .product-cat { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-dark); }
 .product h3 { font-size: 1.3rem; margin: .25rem 0 .5rem; }
 .product-desc { font-size: .88rem; color: var(--muted); margin-bottom: .5rem; }
-.sizes { display: flex; flex-wrap: wrap; gap: .4rem; margin: .1rem 0 .8rem; }
+.sizes { display: flex; flex-wrap: wrap; gap: .3rem; margin: .1rem 0 .8rem; }
 .size {
-  font-size: .72rem; letter-spacing: .04em; padding: .4rem .75rem;
+  font-size: .7rem; letter-spacing: .02em; padding: .4rem .55rem;
   border: 1px solid var(--line); color: var(--muted); transition: all .3s var(--ease);
 }
 .size:hover { border-color: var(--gold); color: var(--ebony); }

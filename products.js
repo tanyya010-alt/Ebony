@@ -125,6 +125,13 @@ const PRODUCTS = [
     "price": 17000,
     "image": "images/garnier-micellar-cleansing-water-mattifying.jpg",
     "details": "Purifies pores, all skin types · 400 ml"
+   },
+   {
+    "id": "garnier-micellar-cleansing-water-rose-glow",
+    "size": "Rose Glow",
+    "price": 22000,
+    "image": "images/garnier-micellar-cleansing-water-rose.jpg",
+    "details": "For dull, sensitive skin · 100 ml travel size"
    }
   ]
  },
