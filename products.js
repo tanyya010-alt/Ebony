@@ -94,14 +94,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Basic",
-  "price": 8500,
+  "price": 13500,
   "priceRange": [
    5000,
    12000
   ],
   "shape": "pump",
   "bg": "#ece2d3",
-  "color": "#f6efe3"
+  "color": "#f6efe3",
+  "image": "images/garnier-micellar-cleansing-water.jpg",
+  "details": "SkinActive All-in-1 · for sensitive skin"
  },
  {
   "id": "neutrogena-deep-clean-facial-cleanser",
