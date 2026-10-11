@@ -1,39 +1,25 @@
 /* ==========================================================
    Ebony's Skin Therapy & Spa — storefront script
-   Edit PRODUCTS and TREATMENTS below to change what's for sale.
+   Products live in products.js (generated from data/catalog.csv).
+   Edit TREATMENTS below to change the spa menu.
    ========================================================== */
 
-const CURRENCY = "USD";
-const LOCALE = "en-US";
-
-// shape: "dropper" | "jar" | "pump" | "tube" | "flacon" | "round" | "oil" | "candle"
-const PRODUCTS = [
-  { id: "glow-serum",    name: "Golden Glow Vitamin C Serum", category: "skincare", shape: "dropper", price: 58, size: "30 ml",  tag: "Bestseller", bg: "#ead9bf", color: "#c99a5b", desc: "Brightens dark spots and evens tone." },
-  { id: "silk-cream",    name: "Shea Silk Moisture Cream",    category: "skincare", shape: "jar",     price: 64, size: "50 ml",  bg: "#efe3d2", color: "#f6efe3", desc: "Deep 24-hour hydration with raw shea." },
-  { id: "cleanser",      name: "Honey Oat Gentle Cleanser",   category: "skincare", shape: "pump",    price: 36, size: "150 ml", bg: "#e6d6be", color: "#d8b98c", desc: "Soft, low-foam daily cleanse." },
-  { id: "eye-balm",      name: "Cocoa Bright Eye Balm",       category: "skincare", shape: "tube",    price: 42, size: "15 ml",  tag: "New", bg: "#dfcbb1", color: "#6b4b38", desc: "Smooths and brightens under-eyes." },
-  { id: "ebony-noir",    name: "Ebony Noir Eau de Parfum",    category: "perfume",  shape: "flacon",  price: 128, size: "50 ml", tag: "Signature", bg: "#2a211b", color: "#1a1410", desc: "Oud, black vanilla and amber." },
-  { id: "velvet-rose",   name: "Velvet Rose Eau de Parfum",   category: "perfume",  shape: "round",   price: 118, size: "50 ml", bg: "#e9d3cb", color: "#c98d86", desc: "Damask rose, peony and musk." },
-  { id: "amber-dusk",    name: "Amber Dusk Perfume Oil",      category: "perfume",  shape: "oil",     price: 74, size: "10 ml",  bg: "#e3cba6", color: "#b07a3a", desc: "Roll-on amber, sandalwood and tonka." },
-  { id: "body-mist",     name: "Ebony Bloom Body Mist",       category: "perfume",  shape: "pump",    price: 46, size: "200 ml", bg: "#ecdccc", color: "#e3c3a5", desc: "Light jasmine and neroli veil." },
-  { id: "body-oil",      name: "Radiance Body Oil",           category: "therapy",  shape: "oil",     price: 52, size: "100 ml", tag: "Spa Favourite", bg: "#e7d4b6", color: "#c99a5b", desc: "Shimmering oil for luminous skin." },
-  { id: "body-scrub",    name: "Brown Sugar Body Polish",     category: "therapy",  shape: "jar",     price: 44, size: "200 g",  bg: "#dccab0", color: "#a4794f", desc: "Exfoliates for soft, glowing skin." },
-  { id: "clay-mask",     name: "Black Clay Detox Mask",       category: "therapy",  shape: "jar",     price: 48, size: "75 ml",  bg: "#d6c7b3", color: "#2a211b", desc: "Purifies pores and calms the skin." },
-  { id: "spa-candle",    name: "Sanctuary Spa Candle",        category: "therapy",  shape: "candle",  price: 38, size: "220 g",  bg: "#efe3d2", color: "#14100d", desc: "Our treatment-room scent, at home." },
-];
+const CURRENCY = "NGN";
+const LOCALE = "en-NG";
+const PAGE_SIZE = 12;
 
 const TREATMENTS = [
-  { id: "radiance-facial", name: "Signature Radiance Facial",  duration: "75 min", price: 120, desc: "Our hero treatment: double cleanse, enzyme exfoliation, extractions, sculpting massage and a vitamin C mask for an instant glow." },
-  { id: "hyperpig",        name: "Even-Tone Therapy",          duration: "60 min", price: 140, desc: "Targeted treatment for hyperpigmentation and dark spots using gentle, melanin-safe peels and brightening actives." },
-  { id: "acne-clear",      name: "Clear Skin Treatment",       duration: "60 min", price: 110, desc: "Deep pore cleanse, high-frequency and a calming clay mask to clear breakouts and soothe inflammation." },
-  { id: "body-ritual",     name: "Ebony Body Glow Ritual",     duration: "90 min", price: 165, desc: "Brown sugar polish, warm shea wrap and full-body massage with our Radiance Body Oil." },
-  { id: "massage",         name: "Relaxing Aromatherapy Massage", duration: "60 min", price: 95, desc: "Slow, flowing massage with warm oils to release tension and quiet the mind." },
+  { id: "radiance-facial", name: "Signature Radiance Facial",  duration: "75 min", price: 45000, desc: "Our hero treatment: double cleanse, enzyme exfoliation, extractions, sculpting massage and a vitamin C mask for an instant glow." },
+  { id: "hyperpig",        name: "Even-Tone Therapy",          duration: "60 min", price: 55000, desc: "Targeted treatment for hyperpigmentation and dark spots using gentle, melanin-safe peels and brightening actives." },
+  { id: "acne-clear",      name: "Clear Skin Treatment",       duration: "60 min", price: 40000, desc: "Deep pore cleanse, high-frequency and a calming clay mask to clear breakouts and soothe inflammation." },
+  { id: "body-ritual",     name: "Ebony Body Glow Ritual",     duration: "90 min", price: 65000, desc: "Brown sugar polish, warm shea wrap and full-body massage with nourishing body oil." },
+  { id: "massage",         name: "Relaxing Aromatherapy Massage", duration: "60 min", price: 35000, desc: "Slow, flowing massage with warm oils to release tension and quiet the mind." },
 ];
 
 /* ---------- Helpers ---------- */
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const money = n => new Intl.NumberFormat(LOCALE, { style: "currency", currency: CURRENCY }).format(n);
+const money = n => new Intl.NumberFormat(LOCALE, { style: "currency", currency: CURRENCY, maximumFractionDigits: 0 }).format(n);
 const byId = id => PRODUCTS.find(p => p.id === id);
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -53,54 +39,62 @@ function productSVG(p) {
         <stop offset="0" stop-color="${shade(c, -18)}"/><stop offset=".35" stop-color="${shade(c, 14)}"/><stop offset="1" stop-color="${shade(c, -26)}"/>
       </linearGradient>
     </defs>`;
-  const name = (y, size, ls = 2, fill = label) =>
-    `<text x="50" y="${y}" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="${size}" letter-spacing="${ls}" fill="${fill}">EBONY</text>`;
+  // Brand name printed on the bottle, shrunk to fit the label width.
+  const brand = escapeHtml(p.brand.toUpperCase());
+  const name = (y, size, ls = 2, fill = label, maxW = 40) => {
+    const n = p.brand.length;
+    if (n * (0.62 * size + ls) > maxW) {
+      ls = Math.min(ls, 0.4);
+      size = Math.max(3.2, (maxW / n - ls) / 0.62);
+    }
+    return `<text x="50" y="${y}" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="${size.toFixed(2)}" letter-spacing="${ls}" fill="${fill}">${brand}</text>`;
+  };
   const shapes = {
     dropper: `
       <rect x="40" y="10" width="20" height="26" rx="9" fill="#14100d"/>
       <rect x="37" y="34" width="26" height="10" rx="2" fill="${gold}"/>
       <rect x="28" y="44" width="44" height="74" rx="8" fill="${glass}"/>
       <rect x="33" y="70" width="34" height="26" fill="#f7f1e8" opacity=".85"/>
-      ${name(86, 6.5, .8, "#14100d")}`,
+      ${name(86, 6.5, .8, "#14100d", 31)}`,
     jar: `
       <rect x="18" y="58" width="64" height="16" rx="3" fill="${gold}"/>
       <rect x="20" y="74" width="60" height="42" rx="8" fill="${glass}"/>
-      ${name(99, 9)}`,
+      ${name(99, 9, 2, label, 54)}`,
     pump: `
       <rect x="44" y="10" width="26" height="6" rx="3" fill="#14100d"/>
       <rect x="46" y="14" width="8" height="16" fill="#14100d"/>
       <rect x="38" y="28" width="24" height="12" rx="2" fill="${gold}"/>
       <rect x="28" y="40" width="44" height="78" rx="10" fill="${glass}"/>
-      ${name(82, 8)}`,
+      ${name(82, 8, 2, label, 38)}`,
     tube: `
       <path d="M32 14 H68 L64 92 H36 Z" fill="${glass}"/>
       <rect x="34" y="92" width="32" height="24" rx="3" fill="${gold}"/>
       <rect x="32" y="12" width="36" height="5" fill="${shade(c, -30)}"/>
-      ${name(56, 6.5, 1)}`,
+      ${name(56, 6.5, 1, label, 28)}`,
     flacon: `
       <rect x="36" y="14" width="28" height="22" rx="3" fill="${gold}"/>
       <rect x="44" y="36" width="12" height="8" fill="${gold}"/>
       <rect x="20" y="44" width="60" height="72" rx="6" fill="${glass}" stroke="#c6a26a" stroke-opacity=".6"/>
       <path d="M24 48 L40 48 L28 108 L24 108 Z" fill="#fff" opacity=".12"/>
-      ${name(82, 10)}
-      <text x="50" y="94" text-anchor="middle" font-family="Jost, sans-serif" font-size="4" letter-spacing="1.5" fill="${label}" opacity=".8">NOIR</text>`,
+      ${name(82, 10, 2, label, 50)}
+      <text x="50" y="94" text-anchor="middle" font-family="Jost, sans-serif" font-size="4" letter-spacing="1.5" fill="${label}" opacity=".8">PARFUM</text>`,
     round: `
       <rect x="40" y="16" width="20" height="24" rx="3" fill="${gold}"/>
       <rect x="45" y="40" width="10" height="8" fill="${gold}"/>
       <circle cx="50" cy="82" r="34" fill="${glass}" stroke="#fff" stroke-opacity=".4"/>
       <ellipse cx="38" cy="70" rx="8" ry="14" fill="#fff" opacity=".2"/>
-      ${name(86, 9)}`,
+      ${name(86, 9, 2, label, 52)}`,
     oil: `
       <rect x="42" y="12" width="16" height="28" rx="3" fill="${gold}"/>
       <rect x="34" y="40" width="32" height="78" rx="6" fill="${glass}"/>
       <rect x="38" y="66" width="24" height="28" fill="#f7f1e8" opacity=".85"/>
-      ${name(83, 5, .6, "#14100d")}`,
+      ${name(83, 5, .6, "#14100d", 22)}`,
     candle: `
       <path d="M50 30 C46 38 46 44 50 46 C54 44 54 38 50 30 Z" fill="#e7b25b"/>
       <rect x="49" y="44" width="2" height="8" fill="#14100d"/>
       <rect x="22" y="52" width="56" height="64" rx="4" fill="${glass}"/>
       <rect x="22" y="52" width="56" height="6" fill="${gold}"/>
-      ${name(90, 9)}`,
+      ${name(90, 9, 2, label, 50)}`,
   };
   return `<svg viewBox="0 0 100 124" role="img" aria-label="${escapeHtml(p.name)}">${defs}${shapes[p.shape] || shapes.jar}</svg>`;
 }
@@ -116,35 +110,70 @@ function isDark(hex) {
 }
 
 /* ---------- Shop grid ---------- */
-const CAT_LABEL = { skincare: "Skincare", perfume: "Perfume", therapy: "Body & Therapy" };
+const CAT_LABEL = { skincare: "Skincare", perfume: "Perfumes", body: "Body Care" };
+const TIER_TAG = { "Luxury": "Luxury", "Ultra-luxury": "Niche Luxury" };
+const shop = { cat: "all", type: "all", q: "", sort: "featured", shown: PAGE_SIZE };
 
-function renderProducts(filter = "all") {
-  const list = filter === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
-  $("#product-grid").innerHTML = list.map((p, i) => `
-    <article class="product" style="animation-delay:${i * 60}ms">
+function matches(p) {
+  if (shop.cat !== "all" && p.category !== shop.cat) return false;
+  if (shop.type !== "all" && p.type !== shop.type) return false;
+  if (!shop.q) return true;
+  const hay = `${p.name} ${p.brand} ${p.type} ${p.tier}`.toLowerCase();
+  return shop.q.toLowerCase().split(/\s+/).every(w => hay.includes(w));
+}
+
+function sorted(list) {
+  const by = {
+    "price-asc": (a, b) => a.price - b.price,
+    "price-desc": (a, b) => b.price - a.price,
+    "name": (a, b) => a.name.localeCompare(b.name),
+  }[shop.sort];
+  return by ? [...list].sort(by) : list;
+}
+
+function renderSubFilters() {
+  const box = $("#sub-filters");
+  if (shop.cat === "all") { box.innerHTML = ""; return; }
+  const types = [...new Set(PRODUCTS.filter(p => p.category === shop.cat).map(p => p.type))];
+  box.innerHTML = types.length < 2 ? "" : ["all", ...types].map(t => `
+    <button class="chip${shop.type === t ? " active" : ""}" data-type="${escapeHtml(t)}">${t === "all" ? "All " + CAT_LABEL[shop.cat] : escapeHtml(t)}</button>`).join("");
+}
+
+function renderProducts() {
+  const all = sorted(PRODUCTS.filter(matches));
+  const list = all.slice(0, shop.shown);
+  $("#product-grid").innerHTML = list.length ? list.map((p, i) => `
+    <article class="product" style="animation-delay:${(i % PAGE_SIZE) * 50}ms">
       <div class="product-media" style="background:${p.bg}">
-        ${p.tag ? `<span class="product-tag">${escapeHtml(p.tag)}</span>` : ""}
+        ${TIER_TAG[p.tier] ? `<span class="product-tag">${TIER_TAG[p.tier]}</span>` : ""}
         ${productSVG(p)}
         <button class="quick-add" data-add="${p.id}">Add to Bag</button>
       </div>
-      <span class="product-cat">${CAT_LABEL[p.category]}</span>
+      <span class="product-cat">${escapeHtml(p.brand)} · ${escapeHtml(p.type)}</span>
       <h3>${escapeHtml(p.name)}</h3>
-      <p class="product-desc">${escapeHtml(p.desc)}</p>
-      <p class="product-price">${money(p.price)}<small>· ${escapeHtml(p.size)}</small></p>
-    </article>`).join("");
+      <p class="product-price">${money(p.price)}</p>
+    </article>`).join("") : `<p class="no-results">No products match “${escapeHtml(shop.q)}”. Try another brand or product name.</p>`;
+  $("#result-count").textContent = `${all.length} product${all.length === 1 ? "" : "s"}`;
+  const more = $("#show-more");
+  more.hidden = all.length <= shop.shown;
+  more.textContent = `Show more (${all.length - list.length} more)`;
 }
 
-function setFilter(filter) {
+function setFilter(cat) {
+  shop.cat = cat;
+  shop.type = "all";
+  shop.shown = PAGE_SIZE;
   $$(".filter").forEach(b => {
-    const on = b.dataset.filter === filter;
+    const on = b.dataset.filter === cat;
     b.classList.toggle("active", on);
     b.setAttribute("aria-selected", on);
   });
-  renderProducts(filter);
+  renderSubFilters();
+  renderProducts();
 }
 
 /* ---------- Cart (saved in the browser) ---------- */
-const CART_KEY = "ebony-cart";
+const CART_KEY = "ebony-cart-v2";
 let cart = loadCart();
 
 function loadCart() {
@@ -188,7 +217,7 @@ function renderCart() {
         <div class="cart-thumb" style="background:${p.bg}">${productSVG(p)}</div>
         <div>
           <h4>${escapeHtml(p.name)}</h4>
-          <span class="muted">${escapeHtml(p.size)}</span><br>
+          <span class="muted">${escapeHtml(p.type)}</span><br>
           <div class="qty">
             <button data-qty="${id}" data-d="-1" aria-label="Decrease quantity">−</button>
             <span>${q}</span>
@@ -294,6 +323,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupBooking();
   setupReveal();
   $("#year").textContent = new Date().getFullYear();
+  const featured = byId($("#feature-add").dataset.add);
+  if (featured) $("#feature-add").textContent = `Add to Bag — ${money(featured.price)}`;
 
   document.addEventListener("click", e => {
     const t = e.target.closest("button, a");
@@ -308,6 +339,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (t.dataset.filter) setFilter(t.dataset.filter);
+    if (t.dataset.type) { shop.type = t.dataset.type; shop.shown = PAGE_SIZE; renderSubFilters(); renderProducts(); }
+    if (t.id === "show-more") { shop.shown += PAGE_SIZE; renderProducts(); }
     if (t.matches(".cart-btn")) openCart();
     if (t.matches(".cart-close")) closeCart();
     if (t.matches(".menu-toggle")) {
@@ -325,6 +358,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  $("#shop-search").addEventListener("input", e => { shop.q = e.target.value.trim(); shop.shown = PAGE_SIZE; renderProducts(); });
+  $("#shop-sort").addEventListener("change", e => { shop.sort = e.target.value; renderProducts(); });
   $(".overlay").addEventListener("click", closeCart);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeCart(); });
 

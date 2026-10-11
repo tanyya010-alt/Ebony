@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <div class="announcement">Complimentary shipping on orders over $75 &nbsp;·&nbsp; Free sample with every order</div>
+  <div class="announcement">Nationwide delivery across Nigeria &nbsp;·&nbsp; 100% authentic brands</div>
 
   <header class="site-header" id="top">
     <div class="container header-inner">
@@ -57,7 +57,7 @@
         <div class="hero-copy reveal">
           <p class="eyebrow">Skincare · Perfumes · Spa Rituals</p>
           <h1>The art of<br><em>radiant</em> skin.</h1>
-          <p class="lede">Thoughtfully crafted formulas, signature scents and restorative therapies — created by Ebony to nourish rich, beautiful skin and quiet the mind.</p>
+          <p class="lede">The skincare and fragrances you love — from CeraVe and La Roche-Posay to Lattafa, Dior and Baccarat Rouge — hand-picked by Ebony, alongside restorative spa therapies for rich, beautiful skin.</p>
           <div class="hero-actions">
             <a href="#shop" class="btn btn-gold">Shop the Collection</a>
             <a href="#spa" class="btn btn-ghost">Book a Treatment</a>
@@ -83,9 +83,9 @@
     <!-- VALUES STRIP -->
     <section class="values">
       <div class="container values-inner">
-        <div><span class="v-icon">✦</span>Clean, skin-loving ingredients</div>
-        <div><span class="v-icon">✦</span>Formulated for melanin-rich skin</div>
-        <div><span class="v-icon">✦</span>Cruelty-free &amp; small batch</div>
+        <div><span class="v-icon">✦</span>100% authentic brands</div>
+        <div><span class="v-icon">✦</span>Curated for melanin-rich skin</div>
+        <div><span class="v-icon">✦</span>Delivery across Nigeria</div>
         <div><span class="v-icon">✦</span>Licensed skin therapists</div>
       </div>
     </section>
@@ -103,7 +103,7 @@
             <div class="cc-body">
               <span class="cc-num">01</span>
               <h3>Skincare</h3>
-              <p>Cleansers, serums and creams that restore glow and even tone.</p>
+              <p>Cleansers, serums, moisturisers and sunscreens from CeraVe, The Ordinary, La Roche-Posay, COSRX and more.</p>
               <span class="link-arrow">Explore</span>
             </div>
           </a>
@@ -112,7 +112,7 @@
             <div class="cc-body">
               <span class="cc-num">02</span>
               <h3>Perfumes</h3>
-              <p>Warm, sensual signature scents and body oils that linger beautifully.</p>
+              <p>From Lattafa, Afnan and Armaf to Dior, Chanel, YSL and Parfums de Marly — plus body mists and attars.</p>
               <span class="link-arrow">Explore</span>
             </div>
           </a>
@@ -140,9 +140,27 @@
           <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
           <button class="filter" data-filter="skincare" role="tab" aria-selected="false">Skincare</button>
           <button class="filter" data-filter="perfume" role="tab" aria-selected="false">Perfumes</button>
-          <button class="filter" data-filter="therapy" role="tab" aria-selected="false">Body &amp; Therapy</button>
+          <button class="filter" data-filter="body" role="tab" aria-selected="false">Body Care</button>
+        </div>
+        <div class="sub-filters" id="sub-filters"></div>
+        <div class="shop-toolbar">
+          <label class="search">
+            <span class="sr-only">Search products</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            <input type="search" id="shop-search" placeholder="Search brand or product…" autocomplete="off">
+          </label>
+          <span class="result-count" id="result-count" aria-live="polite"></span>
+          <label class="sort">Sort
+            <select id="shop-sort">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </label>
         </div>
         <div class="product-grid" id="product-grid"></div>
+        <div class="show-more-wrap"><button class="btn btn-ghost" id="show-more" hidden>Show more</button></div>
       </div>
     </section>
 
@@ -153,19 +171,19 @@
           <div class="flacon">
             <div class="flacon-cap"></div>
             <div class="flacon-neck"></div>
-            <div class="flacon-body"><span>EBONY</span><small>Eau de Parfum</small></div>
+            <div class="flacon-body"><span>540</span><small>Extrait de Parfum</small></div>
           </div>
         </div>
         <div class="feature-copy reveal">
-          <p class="eyebrow">Signature Fragrance</p>
-          <h2><em>Ebony Noir</em><br>Eau de Parfum</h2>
-          <p>An intimate, enveloping scent built on smoked oud, black vanilla and warm amber, lifted by a whisper of bergamot and pink pepper. Made to melt into the skin and stay with you all day.</p>
+          <p class="eyebrow">Ebony's Fragrance Pick</p>
+          <h2><em>Baccarat Rouge 540</em><br>Maison Francis Kurkdjian</h2>
+          <p>The luminous, airy amber that turns heads in every room — glowing saffron and jasmine over ambergris and cedar. A true niche icon, and one of the most-requested scents in our boutique.</p>
           <ul class="notes">
-            <li><span>Top</span>Bergamot · Pink Pepper</li>
-            <li><span>Heart</span>Jasmine Sambac · Rose</li>
-            <li><span>Base</span>Oud · Black Vanilla · Amber</li>
+            <li><span>Top</span>Saffron · Jasmine</li>
+            <li><span>Heart</span>Amberwood · Ambergris</li>
+            <li><span>Base</span>Fir Resin · Cedar</li>
           </ul>
-          <button class="btn btn-gold" data-add="ebony-noir">Add to Bag — $128</button>
+          <button class="btn btn-gold" data-add="mfk-baccarat-rouge-540" id="feature-add">Add to Bag</button>
         </div>
       </div>
     </section>
@@ -217,8 +235,8 @@
         <div class="about-copy reveal">
           <p class="eyebrow">Our Story</p>
           <h2>Hello, I'm <em>Ebony.</em></h2>
-          <p>Ebony's Skin Therapy &amp; Spa was born from a simple belief: every woman deserves skincare that truly understands her skin — and a space where she can slow down and be cared for.</p>
-          <p>What began as treatments for friends and family has grown into a home for carefully made skincare, scents I love to wear, and spa rituals designed to leave you glowing inside and out.</p>
+          <p>Ebony's Skin Therapy &amp; Spa was born from a simple belief: every woman deserves skincare that truly works for her skin — and a space where she can slow down and be cared for.</p>
+          <p>What began as treatments for friends and family has grown into a home for authentic skincare I trust, fragrances I love to wear, and spa rituals designed to leave you glowing inside and out.</p>
           <p class="signature">With love, Ebony</p>
         </div>
       </div>
@@ -237,11 +255,11 @@
             <figcaption>— Amara O.</figcaption>
           </figure>
           <figure class="quote reveal">
-            <blockquote>Ebony Noir is the only perfume I wear now. People stop me to ask what it is.</blockquote>
+            <blockquote>Finally a place I trust for original perfumes. My Khamrah arrived sealed and smells exactly right.</blockquote>
             <figcaption>— Danielle R.</figcaption>
           </figure>
           <figure class="quote reveal">
-            <blockquote>Finally a vitamin C serum that faded my dark spots without irritation. Pure luxury.</blockquote>
+            <blockquote>Ebony built me a simple CeraVe and Alpha Arbutin routine and my dark spots have faded so much.</blockquote>
             <figcaption>— Thandiwe M.</figcaption>
           </figure>
         </div>
@@ -276,7 +294,7 @@
         <h4>Shop</h4>
         <a href="#shop" data-filter="skincare">Skincare</a>
         <a href="#shop" data-filter="perfume">Perfumes</a>
-        <a href="#shop" data-filter="therapy">Body &amp; Therapy</a>
+        <a href="#shop" data-filter="body">Body Care</a>
       </div>
       <div>
         <h4>Visit</h4>
@@ -313,6 +331,7 @@
 
   <div class="toast" role="status" aria-live="polite"></div>
 
+  <script src="products.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
