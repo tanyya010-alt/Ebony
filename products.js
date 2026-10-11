@@ -58,14 +58,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Basic",
-  "price": 21500,
+  "price": 20000,
   "priceRange": [
    15000,
    28000
   ],
   "shape": "pump",
   "bg": "#e3dbd0",
-  "color": "#c9d3d6"
+  "color": "#c9d3d6",
+  "image": "images/cetaphil-gentle-skin-cleanser.jpg",
+  "details": "For normal to dry skin"
  },
  {
   "id": "simple-refreshing-facial-wash",
