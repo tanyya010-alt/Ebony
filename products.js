@@ -297,7 +297,7 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Moisturisers",
   "tier": "Basic",
-  "price": 25000,
+  "price": 10000,
   "priceRange": [
    18000,
    35000
@@ -305,8 +305,24 @@ const PRODUCTS = [
   "shape": "jar",
   "bg": "#eadfd2",
   "color": "#e8c9b5",
-  "image": "images/cerave-moisturising-lotion.jpg",
-  "details": "For dry to very dry skin · 473 ml"
+  "image": "images/cerave-moisturising-lotion-236ml.jpg",
+  "details": "For dry to very dry skin",
+  "variants": [
+   {
+    "id": "cerave-moisturising-lotion-236-ml",
+    "size": "236 ml",
+    "price": 10000,
+    "image": "images/cerave-moisturising-lotion-236ml.jpg",
+    "details": "For dry to very dry skin"
+   },
+   {
+    "id": "cerave-moisturising-lotion-473-ml",
+    "size": "473 ml",
+    "price": 25000,
+    "image": "images/cerave-moisturising-lotion.jpg",
+    "details": "For dry to very dry skin"
+   }
+  ]
  },
  {
   "id": "cetaphil-moisturising-cream",
