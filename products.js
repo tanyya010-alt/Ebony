@@ -265,7 +265,23 @@ const PRODUCTS = [
   "bg": "#e3dbd0",
   "color": "#c9d3d6",
   "image": "images/cerave-moisturising-cream.jpg",
-  "details": "For dry to very dry skin · 454 g"
+  "details": "For dry to very dry skin",
+  "variants": [
+   {
+    "id": "cerave-moisturising-cream-454-g-tub",
+    "size": "454 g tub",
+    "price": 19000,
+    "image": "images/cerave-moisturising-cream.jpg",
+    "details": "For dry to very dry skin"
+   },
+   {
+    "id": "cerave-moisturising-cream-539-g-pump",
+    "size": "539 g pump",
+    "price": 40000,
+    "image": "images/cerave-moisturising-cream-pump.jpg",
+    "details": "Face & body, for normal to dry skin · 19 oz"
+   }
+  ]
  },
  {
   "id": "cerave-moisturising-lotion",
