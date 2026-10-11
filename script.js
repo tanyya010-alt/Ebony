@@ -307,12 +307,12 @@ function toast(text) {
 
 /* ---------- Scroll reveal ---------- */
 function setupReveal() {
-  const els = $$(".reveal");
-  if (!("IntersectionObserver" in window)) { els.forEach(el => el.classList.add("in")); return; }
+  if (!("IntersectionObserver" in window)) return;
+  const below = $$(".reveal").filter(el => el.getBoundingClientRect().top > window.innerHeight);
   const io = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.remove("pending"); io.unobserve(en.target); } });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  els.forEach(el => io.observe(el));
+  below.forEach(el => { el.classList.add("pending"); io.observe(el); });
 }
 
 /* ---------- Init & events ---------- */
