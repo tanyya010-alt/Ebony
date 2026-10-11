@@ -7,14 +7,15 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Basic",
-  "price": 24000,
+  "price": 12000,
   "priceRange": [
    18000,
    30000
   ],
   "shape": "pump",
   "bg": "#ece2d3",
-  "color": "#f6efe3"
+  "color": "#f6efe3",
+  "image": "images/cerave-hydrating-facial-cleanser.jpg"
  },
  {
   "id": "cerave-foaming-facial-cleanser",
