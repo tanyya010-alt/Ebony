@@ -178,14 +178,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Mid-range",
-  "price": 14000,
+  "price": 18000,
   "priceRange": [
    10000,
    18000
   ],
   "shape": "pump",
   "bg": "#eadfd2",
-  "color": "#e8c9b5"
+  "color": "#e8c9b5",
+  "image": "images/cosrx-salicylic-acid-daily-gentle-cleanser.jpg",
+  "details": "0.5% salicylic acid · 150 ml"
  },
  {
   "id": "la-roche-posay-effaclar-gel-cleanser",
