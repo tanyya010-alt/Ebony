@@ -432,6 +432,8 @@ p { margin: 0 0 1em; }
   background: var(--cream);
   padding: .35rem .7rem;
 }
+.product-tag.custom { background: var(--ebony); color: var(--gold-light); }
+.has-photo .product-tag:not(.custom) { background: var(--cream-2); }
 .quick-add {
   position: absolute;
   left: 14px; right: 14px; bottom: 14px;

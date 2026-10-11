@@ -237,14 +237,17 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Mid-range",
-  "price": 22500,
+  "price": 10000,
   "priceRange": [
    15000,
    30000
   ],
   "shape": "pump",
   "bg": "#e6d6be",
-  "color": "#d8b98c"
+  "color": "#d8b98c",
+  "image": "images/panoxyl-acne-foaming-wash.jpg",
+  "details": "10% benzoyl peroxide · 156 g",
+  "tag": "Clearance"
  },
  {
   "id": "cerave-moisturising-cream",

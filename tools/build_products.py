@@ -6,6 +6,8 @@ Usage:  python3 tools/build_products.py
 Sizes: give each size its own row with the same Product name and a "Size"
 column (e.g. "355 ml"); the shop shows them as one product with size buttons.
 
+Tag: an optional "Tag" column (e.g. Clearance, New, Bestseller) shows a label on the photo.
+
 Details: an optional "Details" column (skin type, size…) shows under the name.
 
 Photos: add an "Image" column with a direct image link or a file path such as
@@ -123,6 +125,7 @@ def main():
             **({"image": image} if image else {}),
             **({"details": row["Details"].strip()} if (row.get("Details") or "").strip() else {}),
             **({"size": row["Size"].strip()} if (row.get("Size") or "").strip() else {}),
+            **({"tag": row["Tag"].strip()} if (row.get("Tag") or "").strip() else {}),
         })
 
     products = merge_sizes(products)

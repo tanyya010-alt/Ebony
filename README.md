@@ -37,6 +37,7 @@ python3 tools/build_products.py
 
 - The shop price is the **middle of the "Typical Nigeria price range"**, rounded to the nearest ₦500.
 - **Sizes**: give each size its own row with the same Product name and a **`Size`** (e.g. `16 fl oz (473 ml)`), its own Price and Image. The shop shows one product with size buttons.
+- An optional **`Tag`** column (e.g. `Clearance`, `New`, `Bestseller`) shows a label on the product photo.
 - An optional **`Details`** column (skin type, size…) shows under the product name.
 - To set your own exact price, add a **`Price`** column to the CSV (e.g. `25000`); it overrides the range.
 - Categories map to the shop like this: Cleanser / Moisturiser / Sunscreen / Serum / Exfoliant → **Skincare**; Perfume / Body mist / Perfume oil → **Perfumes**; Body care → **Body Care**.

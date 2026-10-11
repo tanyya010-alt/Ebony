@@ -157,7 +157,7 @@ function productCard(p, i = 0) {
   return `
     <article class="product" data-product="${p.id}" style="animation-delay:${(i % PAGE_SIZE) * 50}ms">
       <div class="product-media${v.image ? " has-photo" : ""}" style="background:${p.bg}">
-        ${TIER_TAG[p.tier] ? `<span class="product-tag">${TIER_TAG[p.tier]}</span>` : ""}
+        ${(p.tag || TIER_TAG[p.tier]) ? `<span class="product-tag${p.tag ? " custom" : ""}">${escapeHtml(p.tag || TIER_TAG[p.tier])}</span>` : ""}
         ${productVisual(v)}
         <button class="quick-add" data-add="${v.id}">Add to Bag</button>
       </div>
