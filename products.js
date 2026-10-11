@@ -24,14 +24,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Cleansers",
   "tier": "Basic",
-  "price": 26000,
+  "price": 20000,
   "priceRange": [
    20000,
    32000
   ],
   "shape": "pump",
   "bg": "#e6d6be",
-  "color": "#d8b98c"
+  "color": "#d8b98c",
+  "image": "images/cerave-foaming-facial-cleanser.jpg",
+  "details": "For normal to oily skin · 12 fl oz (355 ml)"
  },
  {
   "id": "cetaphil-gentle-skin-cleanser",

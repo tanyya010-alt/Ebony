@@ -158,6 +158,7 @@ function renderProducts() {
       </div>
       <span class="product-cat">${escapeHtml(p.brand)} · ${escapeHtml(p.type)}</span>
       <h3>${escapeHtml(p.name)}</h3>
+      ${p.details ? `<p class="product-desc">${escapeHtml(p.details)}</p>` : ""}
       <p class="product-price">${money(p.price)}</p>
     </article>`).join("") : `<p class="no-results">No products match “${escapeHtml(shop.q)}”. Try another brand or product name.</p>`;
   $("#result-count").textContent = `${all.length} product${all.length === 1 ? "" : "s"}`;

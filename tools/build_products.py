@@ -3,6 +3,8 @@
 
 Usage:  python3 tools/build_products.py
 
+Details: an optional "Details" column (skin type, size…) shows under the name.
+
 Photos: add an "Image" column with a direct image link or a file path such as
 images/cerave-cleanser.jpg. Products without one show a drawn bottle.
 
@@ -93,6 +95,7 @@ def main():
             "price": price, "priceRange": [low, high],
             "shape": shape, "bg": bg, "color": color,
             **({"image": image} if image else {}),
+            **({"details": row["Details"].strip()} if (row.get("Details") or "").strip() else {}),
         })
 
     OUT.write_text(
