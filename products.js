@@ -215,11 +215,18 @@ const PRODUCTS = [
     "details": "2% salicylic acid, for acne-prone skin · 200 ml"
    },
    {
-    "id": "la-roche-posay-effaclar-gel-cleanser-purifying-foaming",
-    "size": "Purifying Foaming",
+    "id": "la-roche-posay-effaclar-gel-cleanser-foam-200ml",
+    "size": "Foam 200ml",
+    "price": 42000,
+    "image": "images/la-roche-posay-effaclar-purifying-foaming-gel-200ml.jpg",
+    "details": "Purifying foaming gel for oily skin"
+   },
+   {
+    "id": "la-roche-posay-effaclar-gel-cleanser-foam-400ml",
+    "size": "Foam 400ml",
     "price": 45000,
     "image": "images/la-roche-posay-effaclar-purifying-foaming-gel.jpg",
-    "details": "For oily, sensitive skin · 400 ml"
+    "details": "Purifying foaming gel for oily skin"
    }
   ]
  },
