@@ -367,14 +367,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Moisturisers",
   "tier": "Basic",
-  "price": 6500,
+  "price": 6850,
   "priceRange": [
    3000,
    10000
   ],
   "shape": "jar",
   "bg": "#e3dbd0",
-  "color": "#c9d3d6"
+  "color": "#c9d3d6",
+  "image": "images/nivea-soft-moisturising-cream.jpg",
+  "details": "Face, body & hands · 200 ml"
  },
  {
   "id": "aveeno-daily-moisturising-lotion",
