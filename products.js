@@ -385,14 +385,16 @@ const PRODUCTS = [
   "category": "skincare",
   "type": "Moisturisers",
   "tier": "Mid-range",
-  "price": 22500,
+  "price": 15000,
   "priceRange": [
    15000,
    30000
   ],
   "shape": "jar",
   "bg": "#eadfd2",
-  "color": "#e8c9b5"
+  "color": "#e8c9b5",
+  "image": "images/aveeno-daily-moisturising-lotion.jpg",
+  "details": "Body lotion for dry skin · 227 g"
  },
  {
   "id": "cosrx-advanced-snail-92-all-in-one-cream",
